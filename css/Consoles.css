@@ -1,0 +1,174 @@
+/* General Styles */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Bebas Neue", serif;
+    color:#fff;
+}
+body {
+    margin: 0;
+    font-family: "Bebas Neue", serif; /* Changed to match the font from the previous page */
+    background-color: #0b0e22; /* Updated background color to match the theme */
+    color: #ffffff;
+}
+
+.home {
+    width: 100%;
+    height: 100vh;
+    background-image: url("./Image/home-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+
+.home p {
+    color: #fff;
+    font-size: 1.5em;
+    padding-bottom: 20px;
+}
+
+.home a {
+    text-decoration: none;
+    background-color: #FC007A; /* Main button color */
+    color: #fff;
+    font-size: 1.5em;
+    padding: 15px 25px;
+    border-radius: 50px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #FC007A; /* Updated to match the theme */
+    padding: 10px 0;
+}
+
+nav a {
+    color: #ffffff; /* Updated to match the theme */
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2rem;
+}
+
+nav a:hover {
+    color: #0b0e22; /* Updated hover color to match the theme */
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fcff10; /* Updated to match the theme */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.item {
+    background: white; /* Keeping a dark theme */
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.item img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.item .price {
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fcff10; /* Price text color */
+    padding: 5px;
+    border-radius: 0 0 10px 10px;
+}
+
+.item:hover .price {
+    display: block;
+}
+
+footer{
+    background-color: #FC007A;
+    color: #ffffff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 400px) {
+    * {
+        font-size: 14px;
+    }
+
+    .home {
+        padding-bottom: 20px;
+    }
+
+    .home p {
+        font-size: 1.2em;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .home a {
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+
+    .nav_bar {
+        padding: 5px 0;
+    }
+
+    .nav_bar a {
+        font-size: 16px;
+        margin-right: 10px;
+        margin: 0;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .item img {
+        max-width: 150px;
+    }
+
+    .item {
+        padding: 8px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+    }
+}

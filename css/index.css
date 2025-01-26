@@ -1,0 +1,205 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Bebas Neue", serif;
+    color: #fff;
+}
+
+.home {
+    width: 100%;
+    height: 100vh;
+    background-image: url("./Image/home-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+
+.home p {
+    color: #fff;
+    font-size: 1.5em;
+    padding-bottom: 20px;
+}
+
+.home a {
+    text-decoration: none;
+    background-color: #FC007A;
+    color: #fff;
+    font-size: 1.5em;
+    padding: 15px 25px;
+    border-radius: 50px;
+}
+
+.nav_bar {
+    background-color: #FC007A;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.nav_bar a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.nav_bar a:hover {
+    color: #0b0e22;
+}
+
+.popular, .featured {
+    background-color: #0b0e22;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    flex-direction: column;
+}
+
+.popular .topContainer, .featured .topContainer {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: start;
+    color: #fff;
+    align-items: center;
+    font-size: 1.8em;
+}
+
+.popular .bottomContainer, .featured .bottomContainer {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popular .bottomContainer .leftColumn, .featured .bottomContainer .leftColumn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 45%;
+}
+
+.popular .bottomContainer .leftColumn img, .featured .bottomContainer .leftColumn img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.popular .bottomContainer .rightColumn, .featured .bottomContainer .rightColumn {
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.popular .bottomContainer .rightColumn p, .featured .bottomContainer .rightColumn p {
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 200;
+    padding: 20px 0 20px 50px; 
+}
+
+.popular .bottomContainer .rightColumn ul, .featured .bottomContainer .rightColumn ul {
+    color: #fff;
+    font-size: 1em;
+    font-weight: 200;
+    padding: 20px 0 20px 0px; 
+}
+
+footer {
+    background-color: #FC007A;
+    color: #ffffff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Responsive styling for screens smaller than 500px */
+@media (max-width: 500px) {
+    * {
+        font-size: 14px;
+    }
+
+    .home {
+        padding-bottom: 20px;
+    }
+
+    .home p {
+        font-size: 1.2em;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .home a {
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+
+    .nav_bar {
+        padding: 5px 0;
+    }
+
+    .nav_bar a {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    .popular, .featured {
+        height: auto;
+        padding: 20px 10px;
+    }
+
+    .popular .topContainer, .featured .topContainer {
+        font-size: 1.2em;
+    }
+
+    .popular .bottomContainer, .featured .bottomContainer {
+        flex-direction: column;
+    }
+
+    .popular .bottomContainer .leftColumn img, 
+    .featured .bottomContainer .leftColumn img {
+        width: 100%;
+        height: auto;
+        max-width: 300px;
+    }
+
+    .popular .bottomContainer .rightColumn, 
+    .featured .bottomContainer .rightColumn {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .popular .bottomContainer .rightColumn p,
+    .featured .bottomContainer .rightColumn p {
+        font-size: 1em;
+        padding: 10px 0;
+    }
+
+    .popular .bottomContainer .rightColumn ul,
+    .featured .bottomContainer .rightColumn ul {
+        font-size: 1em;
+        padding-left: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+        text-align: center;
+    }
+}

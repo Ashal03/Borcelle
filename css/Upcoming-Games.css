@@ -1,0 +1,189 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Bebas Neue", serif;
+    color:#fff;
+}
+
+body {
+    margin: 0;
+    font-family: "Bebas Neue", serif; /* Changed to match the font from index.html */
+    background-color: #0b0e22; /* Changed to match the theme */
+    color: #ffffff;
+}
+
+.home{
+    width: 100%;
+    height: 100vh;
+    background-image: url("./Image/home-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+ 
+.home p{
+    color: #fff;
+    font-size: 1.5em;
+    padding-bottom: 20px;
+}
+ 
+.home a{
+    text-decoration: none;
+    background-color: #FC007A;
+    color: #fff;
+    font-size: 1.5em;
+    padding: 15px 25px 15px 25px;
+    border-radius: 50px;
+}
+
+.nav_bar{
+    background-color: #FC007A;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.nav_bar a{
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.nav_bar a:hover{
+    color: #0b0e22;
+}
+
+main {
+    padding: 20px;
+}
+
+.introduction {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.introduction h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #fcff10; /* Changed to match the theme */
+}
+
+.games {
+    text-align: center;
+}
+
+.games h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #fcff10; /* Changed to match the theme */
+}
+
+.games-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.game {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: #1a1a2e; /* Adjusted to keep a dark theme */
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.game img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.game:hover img {
+    transform: scale(1.1);
+}
+
+.release-date {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background: rgba(255, 0, 122, 0.7); /* Changed to match theme */
+    color: #fcff10; /* Changed to match the theme */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.game:hover .release-date {
+    opacity: 1;
+}
+
+footer{
+    background-color: #FC007A;
+    color: #ffffff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+@media (max-width: 400px) {
+    .home {
+        padding-bottom: 20px;
+    }
+
+    .home p {
+        font-size: 1.2em;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .home a {
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+
+    .nav_bar {
+        padding: 5px 0;
+    }
+
+    .nav_bar a {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    .introduction {
+        margin-bottom: 20px;
+    }
+
+    .introduction h2 {
+        font-size: 1.5rem;
+    }
+
+    .release-date {
+        font-size: 0.8rem;
+        padding: 5px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+    }
+}

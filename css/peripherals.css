@@ -1,0 +1,172 @@
+/* General Styles */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Bebas Neue", serif;
+    color:#fff;
+}
+
+body {
+    margin: 0;
+    font-family: "Bebas Neue", serif; /* Changed to match the font from index.html */
+    background-color: #0b0e22; /* Adjusted to match the theme */
+    color: #ffffff; /* Consistent text color */
+}
+
+.home{
+    width: 100%;
+    height: 100vh;
+    background-image: url("./Image/home-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+ 
+.home p{
+    color: #fff;
+    font-size: 1.5em;
+    padding-bottom: 20px;
+}
+ 
+.home a{
+    text-decoration: none;
+    background-color: #FC007A;
+    color: #fff;
+    font-size: 1.5em;
+    padding: 15px 25px 15px 25px;
+    border-radius: 50px;
+}
+
+.home a:hover {
+    background-color: #1eb1ff; /* Button hover color (light blue) */
+    color: #1a1a2e; /* Button text hover color */
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #FC007A; /* Navigation background color */
+    padding: 10px 0;
+}
+
+nav a {
+    color: #ffffff; /* Updated to match the theme */
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2rem;
+}
+
+nav a:hover {
+    color: #0b0e22; /* Hover color (dark background) */
+}
+
+main {
+    padding: 20px;
+}
+
+.peripheral-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center; /* Center items horizontally within the grid */
+    align-items: center; /* Center items vertically within the grid */
+    margin: 0 auto; /* Center the grid container itself */
+    max-width: 1200px; /* Optional: Set a max-width to prevent it from stretching too much */
+}
+
+
+.peripheral {
+    text-align: center;
+    position: relative;
+}
+
+.peripheral-image {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    background-color: white;
+}
+
+.peripheral:hover .peripheral-image {
+    transform: scale(1.05);
+}
+
+.price {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 0, 122, 0.8); /* Price background (adjusted to match theme) */
+    color: #fcff10; /* Price text color (yellow) */
+    padding: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.peripheral:hover .price {
+    opacity: 1; /* Show price on hover */
+}
+
+footer{
+    background-color: #FC007A;
+    color: #ffffff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 400px) {
+    .home {
+        padding-bottom: 20px;
+    }
+
+    .home p {
+        font-size: 1.2em;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .home a {
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+
+    .nav_bar {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .nav_bar a {
+        margin-right: 10px;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .peripheral-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .peripheral {
+        padding: 10px;
+    }
+
+    .peripheral-image {
+        max-width: 200px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+    }
+}

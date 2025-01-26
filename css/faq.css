@@ -1,0 +1,195 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Bebas Neue", serif;
+    color:#fff;
+}
+
+body {
+    margin: 0;
+    font-family: "Bebas Neue", serif; /* Changed to match the font from the previous page */
+    background-color: #0b0e22; /* Updated background color to match the theme */
+    color: #ffffff;
+}
+
+.home{
+    width: 100%;
+    height: 100vh;
+    background-image: url("./Image/home-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+ 
+.home p{
+    color: #fff;
+    font-size: 1.5em;
+    padding-bottom: 20px;
+}
+ 
+.home a{
+    text-decoration: none;
+    background-color: #FC007A;
+    color: #fff;
+    font-size: 1.5em;
+    padding: 15px 25px 15px 25px;
+    border-radius: 50px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #FC007A; /* Updated to match the theme */
+    padding: 10px 0;
+}
+
+nav a {
+    color: #ffffff; /* Updated to match the theme */
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2rem;
+}
+
+nav a:hover {
+    color: #0b0e22; /* Updated to match the hover color from the previous styles */
+}
+
+main {
+    padding: 20px;
+}
+
+.faq, .query-form {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #16213e; /* Adjusted to keep a dark theme */
+    border-radius: 10px;
+}
+
+.faq h2, .query-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #fcff10; /* Changed to match the theme */
+}
+
+.question {
+    margin-bottom: 15px;
+}
+
+.question h3 {
+    font-size: 1.2rem;
+    color: #fcff10; /* Changed to match the theme */
+}
+
+.query-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.query-form label {
+    font-size: 1rem;
+    color: #ffffff; /* Updated label color to match the theme */
+}
+
+.query-form input, .query-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #FC007A; /* Updated border color to match the theme */
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #1a1a2e; /* Kept consistent with the dark theme */
+    color: #ffffff;
+}
+
+.query-form input:focus, .query-form textarea:focus {
+    outline: none;
+    border-color: #fcff10; /* Updated focus border color to match the theme */
+}
+
+.query-form button {
+    align-self: flex-start;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background: #1eb1ff; /* Updated button background to match the theme */
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.query-form button:hover {
+    background: #fcff10; /* Changed to match the theme */
+    color: #1a1a2e; /* Updated text color on hover */
+}
+
+footer{
+    background-color: #FC007A;
+    color: #ffffff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 400px) {
+    .home {
+        padding-bottom: 20px;
+    }
+
+    .home p {
+        font-size: 1.2em;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .home a {
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+
+    .nav_bar {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .nav_bar a {
+        margin-right: 10px;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .faq, .query-form {
+        padding: 15px;
+    }
+
+    .faq h2, .query-form h2 {
+        font-size: 1.5rem;
+    }
+
+    .question h3 {
+        font-size: 1rem;
+    }
+
+    .query-form input, .query-form textarea {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .query-form button {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+    footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+    }
+}

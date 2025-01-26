@@ -1,0 +1,168 @@
+/* General Styles */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Bebas Neue", serif;
+    color:#fff;
+}
+
+body {
+    margin: 0;
+    font-family: "Bebas Neue", serif; /* Changed to match the font from the previous pages */
+    background-color: #0b0e22; /* Updated background color to match the theme */
+    color: #ffffff;
+}
+
+.home {
+    width: 100%;
+    height: 100vh;
+    background-image: url("./Image/home-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+
+.home p {
+    color: #fff;
+    font-size: 1.5em;
+    padding-bottom: 20px;
+}
+
+.home a {
+    text-decoration: none;
+    background-color: #FC007A; /* Main button color */
+    color: #fff;
+    font-size: 1.5em;
+    padding: 15px 25px;
+    border-radius: 50px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #FC007A; /* Updated to match the theme */
+    padding: 10px 0;
+}
+
+nav a {
+    color: #ffffff; /* Updated to match the theme */
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2rem;
+}
+
+nav a:hover {
+    color: #0b0e22; /* Updated hover color to match the theme */
+}
+
+main {
+    padding: 20px;
+}
+
+.game-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.feature {
+    text-align: center;
+    margin: 20px;
+    position: relative;
+}
+
+.feature img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.feature:hover img {
+    transform: scale(1.05);
+}
+
+.description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fcff10; /* Updated description text color */
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feature:hover .description {
+    opacity: 1;
+}
+
+footer{
+    background-color: #FC007A;
+    color: #ffffff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 400px) {
+    .home {
+        padding-bottom: 20px;
+    }
+
+    .home p {
+        font-size: 1.2em;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .home a {
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+
+    .nav_bar {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .nav_bar a {
+        margin-right: 10px;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .game-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .feature {
+        margin: 10px 0;
+    }
+
+    .feature img {
+        max-width: 250px;
+    }
+
+    .description {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+    }
+}

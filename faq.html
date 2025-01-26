@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Character encoding for the document -->
+    <meta charset="UTF-8" />
+    <!-- Viewport settings for responsiveness on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Link to external CSS stylesheet for styling the FAQ page -->
+    <link rel="stylesheet" href="./css/faq.css" />
+
+    <!-- Title of the webpage -->
+    <title>Queries and FAQ</title>
+
+    <!-- Favicon links for different devices and sizes -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="BORCELLE" />
+    <link rel="manifest" href="./favicon/site.webmanifest" />
+  </head>
+  <body>
+    <header>
+      <!-- Introduction section for the homepage -->
+      <section class="home">
+        <p>
+          From intense battles to breathtaking adventures—your ultimate gaming
+          journey starts here.
+        </p>
+        <a href="#">Learn More</a>
+      </section>
+
+      <!-- Navigation bar with links to different sections of the website -->
+      <nav class="nav_bar">
+        <a href="./index.html">Home</a>
+        <a href="./about_us.html">About Us and Contact</a>
+        <a href="./Upcoming-Games.html">Upcoming Games</a>
+        <a href="./Consoles.html">Console</a>
+        <a href="./peripherals.html">Gaming Peripherals</a>
+        <a href="./games.html">Games</a>
+        <a href="./faq.html">FAQ</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Section for frequently asked questions -->
+      <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="question">
+          <h3>What are the store's operating hours?</h3>
+          <p>Our stores are open from 9:00 AM to 9:00 PM daily.</p>
+        </div>
+        <div class="question">
+          <h3>Do you offer home delivery for purchases?</h3>
+          <p>
+            Yes, we provide home delivery for all online and in-store purchases.
+          </p>
+        </div>
+        <div class="question">
+          <h3>What is your return policy?</h3>
+          <p>
+            Products can be returned within 30 days of purchase with the
+            original receipt.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section for users to submit queries -->
+      <section class="query-form">
+        <h2>Have a Question? Ask Us!</h2>
+        <form action="#" method="post">
+          <label for="name">Your Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+            required
+          />
+
+          <label for="email">Your Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+
+          <label for="message">Your Question:</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="Type your question here"
+            required
+          ></textarea>
+
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+    </main>
+
+    <!-- Footer section with copyright and social media links -->
+    <footer>
+      <p>&copy; 2024 Grid Website. All rights reserved.</p>
+      <div class="social-media-footer">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+    </footer>
+  </body>
+</html>
