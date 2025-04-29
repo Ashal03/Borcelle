@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Link to external CSS stylesheet for peripherals -->
+    <!-- Link to external CSS stylesheet for computer parts -->
     <link rel="stylesheet" href="./css/peripherals.css" />
 
     <!-- Character encoding and viewport settings for responsiveness -->
@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Title of the webpage -->
-    <title>Gaming Peripherals</title>
+    <title>Computer Parts</title>
 
     <!-- Additional stylesheet (if needed) -->
     <link rel="stylesheet" href="styles.css" />
@@ -30,13 +30,124 @@
     />
     <meta name="apple-mobile-web-app-title" content="BORCELLE" />
     <link rel="manifest" href="./favicon/site.webmanifest" />
+
+    <!-- JavaScript for cart functionality - placed after DOM is loaded -->
+    <script src="./cart.js" defer></script>
+
+    <style>
+      /* Additional inline styles for the computer parts page */
+      .category-section {
+        margin-bottom: 40px;
+      }
+
+      .category-title {
+        text-align: center;
+        padding: 15px;
+        background-color: #2a2a2a;
+        color: white;
+        margin-bottom: 20px;
+      }
+
+      .parts-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 0 20px;
+      }
+
+      .part-item {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        transition: transform 0.3s ease;
+      }
+
+      .part-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .part-image {
+        width: 100%;
+        height: 180px;
+        object-fit: contain;
+        margin-bottom: 10px;
+      }
+
+      .filter-section {
+        padding: 20px;
+        background-color: #f0f0f0;
+        margin-bottom: 20px;
+      }
+
+      .filter-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .filter-group {
+        margin-bottom: 10px;
+      }
+
+      .filter-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .filter-group select,
+      .filter-group input {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      .filter-buttons {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .filter-button {
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .filter-button:hover {
+        background-color: #555;
+      }
+
+      .add-to-cart-btn {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .add-to-cart-btn:hover {
+        background-color: #45a049;
+      }
+    </style>
   </head>
   <body>
     <header>
       <!-- Home section with a brief introduction and call to action -->
       <section class="home">
         <p>
-          From intense battles to breathtaking adventures—your ultimate gaming
+          Build your dream PC with premium components—your ultimate computing
           journey starts here.
         </p>
         <a href="#">Learn More</a>
@@ -48,60 +159,619 @@
         <a href="./about_us.html">About Us and Contact</a>
         <a href="./Upcoming-Games.html">Upcoming Games</a>
         <a href="./Consoles.html">Console</a>
-        <a href="./peripherals.html">Gaming Peripherals</a>
+        <a href="./peripherals.html">Gaming peripherals</a>
         <a href="./games.html">Games</a>
         <a href="./faq.html">FAQ</a>
+        <a href="./cart.html" class="cart-link"
+          >Cart <span id="cart-count">0</span></a
+        >
       </nav>
     </header>
 
     <main>
-      <!-- List of gaming peripherals -->
-      <div class="peripheral-list">
-        <div class="peripheral">
-          <img
-            src="./Images/peripherals/mouse.avif"
-            alt="Gaming Mouse"
-            class="peripheral-image"
-          />
-          <h3>Gaming Mouse</h3>
-          <div class="price">$49.99</div>
-          <p>A high-precision gaming mouse with customizable buttons.</p>
+      <!-- Filter section for computer parts -->
+      <section class="filter-section">
+        <h2>Find Your Perfect Components</h2>
+        <form class="filter-form">
+          <div class="filter-group">
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+              <option value="all">All Categories</option>
+              <option value="processors">Processors</option>
+              <option value="graphics-cards">Graphics Cards</option>
+              <option value="motherboards">Motherboards</option>
+              <option value="memory">Memory (RAM)</option>
+              <option value="storage">Storage Devices</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="brand">Brand:</label>
+            <select id="brand" name="brand">
+              <option value="all">All Brands</option>
+              <option value="intel">Intel</option>
+              <option value="amd">AMD</option>
+              <option value="nvidia">NVIDIA</option>
+              <option value="asus">ASUS</option>
+              <option value="msi">MSI</option>
+              <option value="gigabyte">Gigabyte</option>
+              <option value="corsair">Corsair</option>
+              <option value="kingston">Kingston</option>
+              <option value="samsung">Samsung</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="price-min">Min Price:</label>
+            <input
+              type="number"
+              id="price-min"
+              name="price-min"
+              min="0"
+              placeholder="Min $"
+            />
+          </div>
+
+          <div class="filter-group">
+            <label for="price-max">Max Price:</label>
+            <input
+              type="number"
+              id="price-max"
+              name="price-max"
+              min="0"
+              placeholder="Max $"
+            />
+          </div>
+
+          <div class="filter-buttons">
+            <button type="submit" class="filter-button">Apply Filters</button>
+            <button type="reset" class="filter-button">Reset Filters</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Processors Section -->
+      <section id="processors" class="category-section">
+        <h2 class="category-title">Processors (CPUs)</h2>
+        <div class="parts-list">
+          <div
+            class="part-item"
+            data-id="p1"
+            data-name="Intel Core i9-13900K"
+            data-price="569.99"
+            data-category="processors"
+            data-brand="intel"
+          >
+            <img
+              src="./Images/computer parts/intel-core-i9-13900K-review-01.jpg"
+              alt="Intel Core i9-13900K"
+              class="part-image"
+            />
+            <h3>Intel Core i9-13900K</h3>
+            <div class="price">$569.99</div>
+            <p>24 cores (8P+16E), up to 5.8GHz, unlocked for overclocking</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="p2"
+            data-name="AMD Ryzen 9 7950X"
+            data-price="549.99"
+            data-category="processors"
+            data-brand="amd"
+          >
+            <img
+              src="./Images/computer parts/amd ryzen 9 .jpg"
+              alt="AMD Ryzen 9 7950X"
+              class="part-image"
+            />
+            <h3>AMD Ryzen 9 7950X</h3>
+            <div class="price">$549.99</div>
+            <p>16 cores, 32 threads, up to 5.7GHz boost clock</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="p3"
+            data-name="Intel Core i7-13700K"
+            data-price="409.99"
+            data-category="processors"
+            data-brand="intel"
+          >
+            <img
+              src="./Images/computer parts/i7.jpg"
+              alt="Intel Core i7-13700K"
+              class="part-image"
+            />
+            <h3>Intel Core i7-13700K</h3>
+            <div class="price">$409.99</div>
+            <p>16 cores (8P+8E), up to 5.4GHz, unlocked for overclocking</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="p4"
+            data-name="AMD Ryzen 7 7800X3D"
+            data-price="439.99"
+            data-category="processors"
+            data-brand="amd"
+          >
+            <img
+              src="./Images/computer parts/amd ryzen 7.jpg"
+              alt="AMD Ryzen 7 7800X3D"
+              class="part-image"
+            />
+            <h3>AMD Ryzen 7 7800X3D</h3>
+            <div class="price">$439.99</div>
+            <p>8 cores, 16 threads, 3D V-Cache, up to 5.0GHz</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="p5"
+            data-name="Intel Core i5-13600K"
+            data-price="319.99"
+            data-category="processors"
+            data-brand="intel"
+          >
+            <img
+              src="./Images/computer parts/intel co i5.jpg"
+              alt="Intel Core i5-13600K"
+              class="part-image"
+            />
+            <h3>Intel Core i5-13600K</h3>
+            <div class="price">$319.99</div>
+            <p>14 cores (6P+8E), up to 5.1GHz, great for gaming</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="p6"
+            data-name="AMD Ryzen 5 7600X"
+            data-price="269.99"
+            data-category="processors"
+            data-brand="amd"
+          >
+            <img
+              src="./Images/computer parts/amd ryzen 5.jpg"
+              alt="AMD Ryzen 5 7600X"
+              class="part-image"
+            />
+            <h3>AMD Ryzen 5 7600X</h3>
+            <div class="price">$269.99</div>
+            <p>6 cores, 12 threads, up to 5.3GHz, excellent value</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
         </div>
-        <div class="peripheral">
-          <img
-            src="./Images/peripherals/keyboard.jpg"
-            alt="Mechanical Keyboard"
-            class="peripheral-image"
-          />
-          <h3>Mechanical Keyboard</h3>
-          <div class="price">$79.99</div>
-          <p>Experience tactile feedback with this RGB mechanical keyboard.</p>
+      </section>
+
+      <!-- Graphics Cards Section -->
+      <section id="graphics-cards" class="category-section">
+        <h2 class="category-title">Graphics Cards (GPUs)</h2>
+        <div class="parts-list">
+          <div
+            class="part-item"
+            data-id="g1"
+            data-name="NVIDIA GeForce RTX 4090"
+            data-price="1599.99"
+            data-category="graphics-cards"
+            data-brand="nvidia"
+          >
+            <img
+              src="./Images/computer parts/rtx-4090.jpg"
+              alt="NVIDIA GeForce RTX 4090"
+              class="part-image"
+            />
+            <h3>NVIDIA GeForce RTX 4090</h3>
+            <div class="price">$1,599.99</div>
+            <p>24GB GDDR6X, Ray Tracing, DLSS 3.0, 4K gaming monster</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="g2"
+            data-name="AMD Radeon RX 7900 XTX"
+            data-price="999.99"
+            data-category="graphics-cards"
+            data-brand="amd"
+          >
+            <img
+              src="./Images/computer parts/rx 7900.jpg"
+              alt="AMD Radeon RX 7900 XTX"
+              class="part-image"
+            />
+            <h3>AMD Radeon RX 7900 XTX</h3>
+            <div class="price">$999.99</div>
+            <p>24GB GDDR6, FSR 3.0, AMD's flagship gaming GPU</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="g3"
+            data-name="NVIDIA GeForce RTX 4080"
+            data-price="1199.99"
+            data-category="graphics-cards"
+            data-brand="nvidia"
+          >
+            <img
+              src="./Images/computer parts/rtx 4080.jpg"
+              alt="NVIDIA GeForce RTX 4080"
+              class="part-image"
+            />
+            <h3>NVIDIA GeForce RTX 4080</h3>
+            <div class="price">$1,199.99</div>
+            <p>16GB GDDR6X, High-end gaming performance</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="g4"
+            data-name="AMD Radeon RX 7800 XT"
+            data-price="499.99"
+            data-category="graphics-cards"
+            data-brand="amd"
+          >
+            <img
+              src="./Images/computer parts/RX_7800_XT_38.jpg"
+              alt="AMD Radeon RX 7800 XT"
+              class="part-image"
+            />
+            <h3>AMD Radeon RX 7800 XT</h3>
+            <div class="price">$499.99</div>
+            <p>16GB GDDR6, Great 1440p performance, Good value</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="g5"
+            data-name="NVIDIA GeForce RTX 4070"
+            data-price="599.99"
+            data-category="graphics-cards"
+            data-brand="nvidia"
+          >
+            <img
+              src="./Images/computer parts/rtx 4070.jpg"
+              alt="NVIDIA GeForce RTX 4070"
+              class="part-image"
+            />
+            <h3>NVIDIA GeForce RTX 4070</h3>
+            <div class="price">$599.99</div>
+            <p>12GB GDDR6X, Excellent 1440p gaming, Power efficient</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="g6"
+            data-name="AMD Radeon RX 7600"
+            data-price="269.99"
+            data-category="graphics-cards"
+            data-brand="amd"
+          >
+            <img
+              src="./Images/computer parts/38351.jpg"
+              alt="AMD Radeon RX 7600"
+              class="part-image"
+            />
+            <h3>AMD Radeon RX 7600</h3>
+            <div class="price">$269.99</div>
+            <p>8GB GDDR6, Great 1080p gaming, Budget-friendly</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
         </div>
-        <div class="peripheral">
-          <img
-            src="./Images/peripherals/headset.jpg"
-            alt="Gaming Headset"
-            class="peripheral-image"
-          />
-          <h3>Gaming Headset</h3>
-          <div class="price">$89.99</div>
-          <p>Immerse yourself with surround sound in this gaming headset.</p>
+      </section>
+
+      <!-- Motherboards Section -->
+      <section id="motherboards" class="category-section">
+        <h2 class="category-title">Motherboards</h2>
+        <div class="parts-list">
+          <div
+            class="part-item"
+            data-id="m1"
+            data-name="ASUS ROG Maximus Z790 Hero"
+            data-price="629.99"
+            data-category="motherboards"
+            data-brand="asus"
+          >
+            <img
+              src="./Images/computer parts/rog maximus z790.jpg"
+              alt="ASUS ROG Maximus Z790 Hero"
+              class="part-image"
+            />
+            <h3>ASUS ROG Maximus Z790 Hero</h3>
+            <div class="price">$629.99</div>
+            <p>Intel Z790, DDR5, PCIe 5.0, WiFi 6E, Premium features</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="m2"
+            data-name="MSI MEG X670E GODLIKE"
+            data-price="999.99"
+            data-category="motherboards"
+            data-brand="msi"
+          >
+            <img
+              src="./Images/computer parts/msi meg x670E.jpg"
+              alt="MSI MEG X670E GODLIKE"
+              class="part-image"
+            />
+            <h3>MSI MEG X670E GODLIKE</h3>
+            <div class="price">$999.99</div>
+            <p>AMD X670E, DDR5, PCIe 5.0, Flagship AM5 motherboard</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="m3"
+            data-name="Gigabyte Z790 AORUS Elite AX"
+            data-price="329.99"
+            data-category="motherboards"
+            data-brand="gigabyte"
+          >
+            <img
+              src="./Images/computer parts/z790 aorus elite x ax.jpg"
+              alt="Gigabyte Z790 AORUS Elite AX"
+              class="part-image"
+            />
+            <h3>Gigabyte Z790 AORUS Elite AX</h3>
+            <div class="price">$329.99</div>
+            <p>Intel Z790, DDR5, WiFi 6E, Excellent mid-range option</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="m4"
+            data-name="ASUS TUF Gaming B650-PLUS WiFi"
+            data-price="219.99"
+            data-category="motherboards"
+            data-brand="asus"
+          >
+            <img
+              src="./Images/computer parts/ASUS TUF Gaming B650-PLUS WiFi.jpg"
+              alt="ASUS TUF Gaming B650-PLUS WiFi"
+              class="part-image"
+            />
+            <h3>ASUS TUF Gaming B650-PLUS WiFi</h3>
+            <div class="price">$219.99</div>
+            <p>AMD B650, DDR5, PCIe 4.0, WiFi 6, Great value</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="m5"
+            data-name="MSI PRO B760-P WIFI"
+            data-price="169.99"
+            data-category="motherboards"
+            data-brand="msi"
+          >
+            <img
+              src="./Images/computer parts/MSI PRO B760-P WIFI.jpg"
+              alt="MSI PRO B760-P WIFI"
+              class="part-image"
+            />
+            <h3>MSI PRO B760-P WIFI</h3>
+            <div class="price">$169.99</div>
+            <p>Intel B760, DDR5, WiFi 6E, Budget-friendly</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="m6"
+            data-name="Gigabyte B650 AORUS ELITE AX"
+            data-price="239.99"
+            data-category="motherboards"
+            data-brand="gigabyte"
+          >
+            <img
+              src="./Images/computer parts/ASUS TUF Gaming B650-PLUS WiFi.jpg"
+              alt="Gigabyte B650 AORUS ELITE AX"
+              class="part-image"
+            />
+            <h3>Gigabyte B650 AORUS ELITE AX</h3>
+            <div class="price">$239.99</div>
+            <p>AMD B650, DDR5, PCIe 4.0, WiFi 6E, AM5 Socket</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
         </div>
-        <div class="peripheral">
-          <img
-            src="./Images/peripherals/Game Controller.png"
-            alt="Game Controller"
-            class="peripheral-image"
-          />
-          <h3>Game Controller</h3>
-          <div class="price">$39.99</div>
-          <p>Wireless controller for a seamless gaming experience.</p>
+      </section>
+
+      <!-- Memory (RAM) Section -->
+      <section id="memory" class="category-section">
+        <h2 class="category-title">Memory (RAM)</h2>
+        <div class="parts-list">
+          <div
+            class="part-item"
+            data-id="r1"
+            data-name="Corsair Vengeance RGB Pro 32GB"
+            data-price="129.99"
+            data-category="memory"
+            data-brand="corsair"
+          >
+            <img
+              src="./Images/computer parts/Corsair Vengeance RGB Pro 32GB.jpg"
+              alt="Corsair Vengeance RGB Pro 32GB"
+              class="part-image"
+            />
+            <h3>Corsair Vengeance RGB Pro 32GB</h3>
+            <div class="price">$129.99</div>
+            <p>DDR4-3600MHz, 2x16GB, CL18, RGB lighting</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="r2"
+            data-name="G.SKILL Trident Z5 RGB 32GB"
+            data-price="164.99"
+            data-category="memory"
+            data-brand="gskill"
+          >
+            <img
+              src="./Images/computer parts/G.SKILL Trident Z5 RGB 32GB.jpg"
+              alt="G.SKILL Trident Z5 RGB 32GB"
+              class="part-image"
+            />
+            <h3>G.SKILL Trident Z5 RGB 32GB</h3>
+            <div class="price">$164.99</div>
+            <p>DDR5-6000MHz, 2x16GB, CL36, RGB lighting</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="r3"
+            data-name="Kingston FURY Beast 16GB"
+            data-price="59.99"
+            data-category="memory"
+            data-brand="kingston"
+          >
+            <img
+              src="./Images/computer parts/Kingston FURY Beast 16GB.jpg"
+              alt="Kingston FURY Beast 16GB"
+              class="part-image"
+            />
+            <h3>Kingston FURY Beast 16GB</h3>
+            <div class="price">$59.99</div>
+            <p>DDR4-3200MHz, 2x8GB, CL16, Budget option</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="r4"
+            data-name="Crucial Pro 64GB"
+            data-price="209.99"
+            data-category="memory"
+            data-brand="crucial"
+          >
+            <img
+              src="./Images/computer parts/Crucial Pro 64GB.jpg"
+              alt="Crucial Pro 64GB"
+              class="part-image"
+            />
+            <h3>Crucial Pro 64GB</h3>
+            <div class="price">$209.99</div>
+            <p>DDR5-5600MHz, 2x32GB, CL46, High capacity</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
         </div>
-        <!-- Add more peripherals as needed -->
-      </div>
+      </section>
+
+      <!-- Storage Devices Section -->
+      <section id="storage" class="category-section">
+        <h2 class="category-title">Storage Devices</h2>
+        <div class="parts-list">
+          <div
+            class="part-item"
+            data-id="s1"
+            data-name="Samsung 990 PRO 2TB"
+            data-price="219.99"
+            data-category="storage"
+            data-brand="samsung"
+          >
+            <img
+              src="./Images/computer parts/Samsung 990 PRO 2TB.jpg"
+              alt="Samsung 990 PRO 2TB"
+              class="part-image"
+            />
+            <h3>Samsung 990 PRO 2TB</h3>
+            <div class="price">$219.99</div>
+            <p>PCIe 4.0 NVMe SSD, Up to 7,450 MB/s read speeds</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="s2"
+            data-name="WD Black SN850X 1TB"
+            data-price="149.99"
+            data-category="storage"
+            data-brand="wd"
+          >
+            <img
+              src="./Images/computer parts/WD Black SN850X 1TB.jpg"
+              alt="WD Black SN850X 1TB"
+              class="part-image"
+            />
+            <h3>WD Black SN850X 1TB</h3>
+            <div class="price">$149.99</div>
+            <p>PCIe 4.0 NVMe SSD, Up to 7,300 MB/s read speeds</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="s3"
+            data-name="Crucial P3 Plus 2TB"
+            data-price="129.99"
+            data-category="storage"
+            data-brand="crucial"
+          >
+            <img
+              src="./Images/computer parts/Crucial P3 Plus 2TB.jpg"
+              alt="Crucial P3 Plus 2TB"
+              class="part-image"
+            />
+            <h3>Crucial P3 Plus 2TB</h3>
+            <div class="price">$129.99</div>
+            <p>PCIe 4.0 NVMe SSD, Good value for capacity</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="s4"
+            data-name="Seagate Barracuda 4TB"
+            data-price="89.99"
+            data-category="storage"
+            data-brand="seagate"
+          >
+            <img
+              src="./Images/computer parts/Seagate Barracuda 4TB.jpg"
+              alt="Seagate Barracuda 4TB"
+              class="part-image"
+            />
+            <h3>Seagate Barracuda 4TB</h3>
+            <div class="price">$89.99</div>
+            <p>7200 RPM HDD, 256MB Cache, Mass storage</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="s5"
+            data-name="Samsung 870 EVO 1TB"
+            data-price="99.99"
+            data-category="storage"
+            data-brand="samsung"
+          >
+            <img
+              src="./Images/computer parts/Samsung 990 PRO 2TB.jpg"
+              alt="Samsung 870 EVO 1TB"
+              class="part-image"
+            />
+            <h3>Samsung 870 EVO 1TB</h3>
+            <div class="price">$99.99</div>
+            <p>SATA SSD, 560 MB/s read speeds, Reliable</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div
+            class="part-item"
+            data-id="s6"
+            data-name="Sabrent Rocket 4 Plus 4TB"
+            data-price="499.99"
+            data-category="storage"
+            data-brand="sabrent"
+          >
+            <img
+              src="./Images/computer parts/Sabrent Rocket 4 Plus 4TB.jpg"
+              alt="Sabrent Rocket 4 Plus 4TB"
+              class="part-image"
+            />
+            <h3>Sabrent Rocket 4 Plus 4TB</h3>
+            <div class="price">$499.99</div>
+            <p>PCIe 4.0 NVMe SSD, High capacity, Professional use</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Footer section -->
+
     <footer>
       <p>&copy; 2024 Grid Website. All rights reserved.</p>
       <div class="social-media-footer">
@@ -110,5 +780,120 @@
         <a href="#">Instagram</a>
       </div>
     </footer>
+
+    <script>
+      // Basic cart functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize cart from localStorage or create empty cart
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        updateCartCount();
+
+        // Add event listeners to all "Add to Cart" buttons
+        const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+        addToCartButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const productDiv = this.closest(".part-item");
+            const product = {
+              id: productDiv.dataset.id,
+              name: productDiv.dataset.name,
+              price: parseFloat(productDiv.dataset.price),
+              image: productDiv.querySelector(".part-image").src,
+              quantity: 1,
+            };
+
+            // Check if product already exists in cart
+            const existingProductIndex = cart.findIndex(
+              (item) => item.id === product.id
+            );
+            if (existingProductIndex > -1) {
+              cart[existingProductIndex].quantity += 1;
+            } else {
+              cart.push(product);
+            }
+
+            // Save cart to localStorage
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+
+            // Visual feedback
+            button.textContent = "Added!";
+            setTimeout(() => {
+              button.textContent = "Add to Cart";
+            }, 1000);
+          });
+        });
+
+        // Filter functionality
+        const filterForm = document.querySelector(".filter-form");
+        if (filterForm) {
+          filterForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            filterProducts();
+          });
+
+          document
+            .querySelector('button[type="reset"]')
+            .addEventListener("click", function () {
+              setTimeout(() => {
+                showAllProducts();
+              }, 10);
+            });
+        }
+
+        function filterProducts() {
+          const category = document.getElementById("category").value;
+          const brand = document.getElementById("brand").value;
+          const minPrice = document.getElementById("price-min").value;
+          const maxPrice = document.getElementById("price-max").value;
+
+          const products = document.querySelectorAll(".part-item");
+
+          products.forEach((product) => {
+            let show = true;
+
+            // Filter by category
+            if (category !== "all" && product.dataset.category !== category) {
+              show = false;
+            }
+
+            // Filter by brand
+            if (brand !== "all" && product.dataset.brand !== brand) {
+              show = false;
+            }
+
+            // Filter by price
+            const price = parseFloat(product.dataset.price);
+            if (minPrice && price < minPrice) {
+              show = false;
+            }
+            if (maxPrice && price > maxPrice) {
+              show = false;
+            }
+
+            // Show or hide the product
+            product.style.display = show ? "block" : "none";
+          });
+        }
+
+        function showAllProducts() {
+          const products = document.querySelectorAll(".part-item");
+          products.forEach((product) => {
+            product.style.display = "block";
+          });
+        }
+
+        // Update cart count function
+        function updateCartCount() {
+          const cartCountElement = document.getElementById("cart-count");
+          if (cartCountElement) {
+            const totalItems = cart.reduce(
+              (total, item) => total + item.quantity,
+              0
+            );
+            cartCountElement.textContent = totalItems;
+          }
+        }
+      });
+    </script>
   </body>
 </html>

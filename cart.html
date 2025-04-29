@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Link to external CSS stylesheet for peripherals -->
+    <link rel="stylesheet" href="./css/peripherals.css" />
+
+    <!-- Character encoding and viewport settings for responsiveness -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title of the webpage -->
+    <title>Shopping Cart - Gaming Store</title>
+
+    <!-- Additional stylesheet (if needed) -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon links for different devices and sizes -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="BORCELLE" />
+    <link rel="manifest" href="./favicon/site.webmanifest" />
+    
+    <!-- JavaScript for cart functionality - placed after DOM is loaded -->
+    <script src="./cart.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <!-- Navigation bar with links to different sections of the website -->
+      <nav class="nav_bar">
+        <a href="./index.html">Home</a>
+        <a href="./about_us.html">About Us and Contact</a>
+        <a href="./Upcoming-Games.html">Upcoming Games</a>
+        <a href="./Consoles.html">Console</a>
+        <a href="./peripherals.html">Gaming Peripherals</a>
+        <a href="./games.html">Games</a>
+        <a href="./faq.html">FAQ</a>
+        <a href="./cart.html" class="cart-link">Cart <span id="cart-count">0</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="cart-container">
+        <h1 class="cart-title">Your Shopping Cart</h1>
+        
+        <!-- Cart items will be displayed here -->
+        <div id="cart-items-container" class="cart-items">
+          <!-- Cart items will be added here dynamically -->
+        </div>
+        
+        <!-- Empty cart message -->
+        <div id="cart-empty" class="cart-empty">
+          Your cart is empty. Start shopping now!
+        </div>
+        
+        <!-- Cart summary -->
+        <div id="cart-summary" class="cart-summary" style="display: none;">
+          <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total-price" class="cart-total-value">$0.00</span>
+          </div>
+          <button id="checkout-btn" class="checkout-btn">Proceed to Checkout</button>
+        </div>
+        
+        <a href="./peripherals.html" class="continue-shopping">Continue Shopping</a>
+      </div>
+    </main>
+
+    <!-- Footer section -->
+    <footer>
+      <p>&copy; 2024 Grid Website. All rights reserved.</p>
+      <div class="social-media-footer">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+    </footer>
+
+    <script>
+      // Check if cart rendering is working on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log("Cart page loaded");
+        
+        // Force clear localStorage if testing
+        // localStorage.clear();
+        
+        // Check if cart exists in localStorage
+        const cartData = localStorage.getItem('cart');
+        console.log("Cart data in localStorage:", cartData);
+        
+        // Try to manually render the cart
+        if (typeof renderCart === 'function') {
+          console.log("Calling renderCart function");
+          renderCart();
+        } else {
+          console.error("renderCart function not found!");
+        }
+      });
+    </script>
+  </body>
+</html>
